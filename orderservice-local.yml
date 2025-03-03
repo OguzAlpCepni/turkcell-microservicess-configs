@@ -1,17 +1,15 @@
 spring:
-  application:
-    name: orderservice
   datasource:
-    url: "jdbc:postgresql://localhost:5435/order-service"
+    url: "jdbc:postgresql://pg-1:5432/order-service"
     username: postgres
     password: test
   jpa:
     properties:
       hibernate:
-        dialect: "org.hibernate.dialect.PostgreSQLDialect"
-    show-sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    showSql: true
     hibernate:
-      ddl-auto: update
+      ddlAuto: update
   cloud:
     stream:
       defaultBinder: kafka
@@ -23,15 +21,12 @@ spring:
           content-type: application/json
       kafka:
         binder:
-          brokers: localhost:9092
-server:
-  port: 8081
+          brokers: kafka:9092
+
+
 eureka:
   client:
     service-url:
-      defaultZone: "http://localhost:8888/eureka/"
+      defaultZone: "http://eureka:8888/eureka/"
     register-with-eureka: true
     fetch-registry: true
-  instance:
-    prefer-ip-address: true
-    instance-id: ${spring.application.name}:${server.port}

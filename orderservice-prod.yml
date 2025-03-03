@@ -22,8 +22,7 @@ spring:
       kafka:
         binder:
           brokers: kafka-service:9092
-server:
-  port: 8081
+
 
 eureka:
   client:
@@ -31,6 +30,3 @@ eureka:
       defaultZone: "http://eureka-service:8888/eureka/"
     register-with-eureka: true
     fetch-registry: true
-  instance:
-    prefer-ip-address: true
-    instance-id: ${spring.application.name}:${server.port}
